@@ -1,5 +1,4 @@
 """ Author: Hasan Skaiky
- Student number: 040 672 444
  Date: 24/03/2019  """
 
 
