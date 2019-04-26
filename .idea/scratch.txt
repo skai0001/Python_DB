@@ -1,0 +1,71 @@
+
+        for x in range(2, 12):  # loop < 10
+            new_mylist.add(datast_array[x])  # save first 10 records to array
+        print ('\n'.join(map(str, new_mylist)))  # print the first 10 records of the new array
+        print
+        print name  # keep name visible on the screen when scrolling
+
+    ''' loops through the menu'''
+    while var == 1:
+        try:
+            user_selection = input(menu)
+            type(user_selection)
+
+            if user_selection == 1:
+                for i in new_mylist:  # clears list
+                    new_mylist[:] = []
+
+                for x in range(2, 12):  # loop < 10
+                    new_mylist.add(datast_array[x])  # save first 10 records to array
+                print name
+
+            elif user_selection == 2:
+                print ('\n'.join(map(str, new_mylist)))  # print the first 10 records of the new array
+            elif user_selection == 3:
+                create_new_record = raw_input("please insert the new record you want to create\n")  # do something
+                type(create_new_record)
+                new_mylist.add(create_new_record)
+                print "New Record has been added\n"
+            elif user_selection == 4:
+                edit_record = input("Select the index of the record you want to edit\n")  # do something
+                type(edit_record)
+                print new_mylist[edit_record]
+                edit_record_str = raw_input("Please enter the replacement\n")  # do something
+                type(edit_record_str)
+                new_mylist[edit_record] = edit_record_str
+                print " Record has been edited and replaced"
+
+            elif user_selection == 5:
+                delete_record = input("Select the index of the record you want to delete\n")  # do something
+                type(delete_record)
+                new_mylist.remove(new_mylist[delete_record])
+                print "Record has been deleted\n"
+                print ('\n'.join(map(str, new_mylist)))
+
+            elif user_selection == 6:
+                try:
+
+
+                    '''commits the values in the columns to my db'''
+                    #mydb.commit()
+                    print "Table has been added\n"
+
+
+                except mysql.connector.Error as error :
+                    mydb.rollback()
+                    print("Failed inserting record into python_users table {}".format(error))
+
+            elif user_selection == 0:
+                break
+        except:
+            print "You haven't selected anything, please select from the Menu"
+
+
+except IOError:
+    print 'Problem with File', filename
+
+finally:
+
+    filehandle.close()
+    mydb.close()
+    print "Exiting..."
